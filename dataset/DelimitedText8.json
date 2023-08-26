@@ -1,0 +1,65 @@
+{
+	"name": "DelimitedText8",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_txt",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "output",
+				"container": "demo"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "AccountKey",
+				"type": "String"
+			},
+			{
+				"name": "ParentAccountKey",
+				"type": "String"
+			},
+			{
+				"name": "AccountCodeAlternateKey",
+				"type": "String"
+			},
+			{
+				"name": "ParentAccountCodeAlternateKey",
+				"type": "String"
+			},
+			{
+				"name": "AccountDescription",
+				"type": "String"
+			},
+			{
+				"name": "Operator",
+				"type": "String"
+			},
+			{
+				"name": "CustomMembers",
+				"type": "String"
+			},
+			{
+				"name": "ValueType",
+				"type": "String"
+			},
+			{
+				"name": "CustomMemberOptions",
+				"type": "String"
+			},
+			{
+				"name": "AccountType",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

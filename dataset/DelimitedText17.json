@@ -1,0 +1,25 @@
+{
+	"name": "DelimitedText17",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_txt",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Testmerge.csv",
+				"folderPath": "output",
+				"container": "demo"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

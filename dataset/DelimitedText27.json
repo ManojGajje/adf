@@ -1,0 +1,25 @@
+{
+	"name": "DelimitedText27",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_txt",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "population_by_age(4).tsv",
+				"folderPath": "input",
+				"container": "demo"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

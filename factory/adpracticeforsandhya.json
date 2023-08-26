@@ -1,0 +1,9 @@
+{
+	"name": "adpracticeforsandhya",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e3b9e47e-323a-4a18-bb98-768537c87339",
+		"tenantId": "88d03ed9-5b43-4f7d-9faa-bfe6c82c4e26"
+	}
+}

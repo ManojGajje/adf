@@ -1,0 +1,67 @@
+{
+	"name": "merge",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText7",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText8",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "alterRow1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          id as string,",
+				"          first_name as string,",
+				"          last_name as string,",
+				"          email as string,",
+				"          gender as string,",
+				"          ip_address as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 alterRow(upsertIf(true())) ~> alterRow1",
+				"alterRow1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          AccountKey as string,",
+				"          ParentAccountKey as string,",
+				"          AccountCodeAlternateKey as string,",
+				"          ParentAccountCodeAlternateKey as string,",
+				"          AccountDescription as string,",
+				"          Operator as string,",
+				"          CustomMembers as string,",
+				"          ValueType as string,",
+				"          CustomMemberOptions as string,",
+				"          AccountType as string",
+				"     ),",
+				"     partitionFileNames:['merge.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          each(match(type=='string'),",
+				"               replace($$,' ','') = $$)",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

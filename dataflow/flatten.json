@@ -1,0 +1,85 @@
+{
+	"name": "flatten",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "Json1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText4",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "flatten1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {_id} as string,",
+				"          index as integer,",
+				"          guid as string,",
+				"          isActive as boolean,",
+				"          balance as string,",
+				"          picture as string,",
+				"          age as integer,",
+				"          eyeColor as string,",
+				"          name as string,",
+				"          gender as string,",
+				"          company as string,",
+				"          email as string,",
+				"          phone as string,",
+				"          address as string,",
+				"          about as string,",
+				"          registered as string,",
+				"          latitude as double,",
+				"          longitude as double,",
+				"          tags as string[],",
+				"          friends as (id as integer, name as string)[],",
+				"          greeting as string,",
+				"          favoriteFruit as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'singleDocument') ~> source1",
+				"source1 foldDown(unroll(friends),",
+				"     mapColumn(",
+				"          id = friends.id,",
+				"          name = friends.name",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten1",
+				"flatten1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          circuitId as string,",
+				"          circuitRef as string,",
+				"          name as string,",
+				"          location as string,",
+				"          country as string,",
+				"          lat as string,",
+				"          lng as string,",
+				"          alt as string,",
+				"          url as string",
+				"     ),",
+				"     partitionFileNames:['flattenoutput.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
+			]
+		}
+	}
+}

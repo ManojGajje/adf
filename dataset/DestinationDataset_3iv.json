@@ -1,0 +1,19 @@
+{
+	"name": "DestinationDataset_3iv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage_txt",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "output",
+				"container": "demo"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
